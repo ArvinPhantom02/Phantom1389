@@ -6,6 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q PhantomAIVision.zip
+      - name: More memory
+        run: |
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g" >> PhantomAIVision/gradle.properties
+          echo "kotlin.daemon.jvmargs=-Xmx3g" >> PhantomAIVision/gradle.properties
       - uses: actions/setup-java@v4
         with: {distribution: temurin, java-version: 17}
       - uses: gradle/actions/setup-gradle@v4
